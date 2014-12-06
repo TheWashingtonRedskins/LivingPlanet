@@ -28,25 +28,25 @@ To register a new part of the site in the Conductor, create a directory in **cli
 **view.coffee** - The core view registration file.
 
 ```coffee
-    Conductor.registerView
-        id: "myview"       # The ID of the view
-        slug: "my-view"    # The URL slug of the view
-        template: "myView" # The template name of the view
-        name: "My View"    # Title of the tile on the home page
-        subtitle: "A thing demonstrating My Thing"
-        # Supply an icon image
-        image: "/images/stuff.png"
-        # OR supply a icon template
-        iconTemplate: "myAnimatedIcon"
-        # Optional subscriptions callback
-        subscriptions: ->
-            Meteor.subscribe("myData")
-        # Optional subscriptions callback to WAIT ON before going to the page.
-        waitOn: ->
-            Meteor.subscribe("myData")
-        # Optional rendered function
-        rendered: ->
-            console.log "Rendered!"
+Conductor.registerView
+    id: "myview"       # The ID of the view
+    slug: "my-view"    # The URL slug of the view
+    template: "myView" # The template name of the view
+    name: "My View"    # Title of the tile on the home page
+    subtitle: "A thing demonstrating My Thing"
+    # Supply an icon image
+    image: "/images/stuff.png"
+    # OR supply a icon template
+    iconTemplate: "myAnimatedIcon"
+    # Optional subscriptions callback
+    subscriptions: ->
+        Meteor.subscribe("myData")
+    # Optional subscriptions callback to WAIT ON before going to the page.
+    waitOn: ->
+        Meteor.subscribe("myData")
+    # Optional rendered function
+    rendered: ->
+        console.log "Rendered!"
 ```
 
 This view registration will let Conductor know about your view. This will create a tile on the home screen of the site and register a URL for your app. 
@@ -56,11 +56,11 @@ You can then register your template that you want to render into the body of the
 **view.html**
 
 ```html
-    <template name="myView">
-       {{ > someOtherTemplate }}
-       
-       Myvariable variable: {{myHelper}}
-    </template>
+<template name="myView">
+   {{ > someOtherTemplate }}
+   
+   Myvariable variable: {{myHelper}}
+</template>
 ```
     
 From here you can fill that template with whatever you want for your view. An example here is including another template named `someOtherTemplate`.
@@ -70,12 +70,12 @@ Meteor templating applies here, of course.
 **viewtemplate.coffee**
 
 ```coffee
-    Template.myView.helpers
-        "myHelper": ->
-            Session.get("myVariable")
-    Template.myView.events
-        "click .myButton": ->
-             alert "Ouch"
+Template.myView.helpers
+    "myHelper": ->
+        Session.get("myVariable")
+Template.myView.events
+    "click .myButton": ->
+         alert "Ouch"
 ```
 
 Conductor will handle animating in and out your page, as well as showing loading screens while the `waitOn` subscriptions take a while to get around to completing.
