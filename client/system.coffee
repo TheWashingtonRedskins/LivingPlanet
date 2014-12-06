@@ -1,3 +1,1 @@
-global = @
-Meteor.startup ->
-  global.Conductor = new ConductorClass()
+@Conductor = new ConductorClass()

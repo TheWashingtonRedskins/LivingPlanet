@@ -1,5 +1,6 @@
 noop = ->
   undefined
+
 defaultView =
   id: null
   slug: null
@@ -11,6 +12,7 @@ defaultView =
   subscriptions: noop
   waitOn: noop
   rendered: noop
+  showTile: true
 
 class Conductor
   constructor: ->
@@ -35,6 +37,11 @@ class Conductor
     if existing?
       throw "That view already exists."
     @views.push view
+    @registerRoute view
     @updateViews()
+
+  registerRoute: (view)->
+    Router.route view.slug, ->
+      @render view.template
 
 @ConductorClass = Conductor
