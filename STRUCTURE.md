@@ -48,4 +48,29 @@ To register a new part of the site in the Conductor, create a directory in **cli
             console.log "Rendered!"
 
 This view registration will let Conductor know about your view. This will create a tile on the home screen of the site and register a URL for your app. 
-        
+
+You can then register your template that you want to render into the body of the page when your route is active. Note that this structure is super flexible, you can name these files whatever you want, and have as many of them as you want to separate templates out.
+
+**view.html**
+
+    <template name="myView">
+       {{ > someOtherTemplate }}
+       
+       Myvariable variable: {{myHelper}}
+    </template>
+    
+From here you can fill that template with whatever you want for your view. An example here is including another template named `someOtherTemplate`.
+
+Meteor templating applies here, of course.
+
+**viewtemplate.coffee**
+
+    Template.myView.helpers
+        "myHelper": ->
+            Session.get("myVariable")
+    Template.myView.events
+        "click .myButton": ->
+             alert "Ouch"
+          
+
+Conductor will handle animating in and out your page, as well as showing loading screens while the `waitOn` subscriptions take a while to get around to completing.
