@@ -61,7 +61,9 @@ init = ->
   camera.position.y = 750
   camera.position.z = 2000
   camera.position.x = 750
-  camera.rotation.setX(-90)
+  camera.rotation.setX(45)
+  camera.rotation.setY(0)
+  camera.rotation.setZ(85)
   scene.add camera
   
   # black cover
@@ -405,22 +407,6 @@ treeLoaded = (geometry, mm) ->
     scene.add tree
     trees.push tree
     i++
-  
-  # some "walls"
-  cyl = new THREE.CylinderGeometry(15000, 15000, 18000, 100, 1, true)
-  i = 0
-
-  while i < cyl.vertices.length
-    cyl.vertices[i].y += Math.random() * 4000 - 2000  if cyl.vertices[i].y > 0
-    i++
-  ma = new THREE.MeshBasicMaterial(
-    color: 0x000000
-    side: THREE.BackSide
-  )
-  mesh = new THREE.Mesh(cyl, ma)
-  mesh.rotation.x = -Math.PI / 2
-  mesh.position.z = 3000
-  scene.add mesh
   
   # Particles
   map = THREE.ImageUtils.loadTexture("/textures/bob.png", `null`, checkLoading)
