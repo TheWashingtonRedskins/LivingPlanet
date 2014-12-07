@@ -1,0 +1,28 @@
+body, #hunger
+{
+  height: 500;
+  width: 100%;
+  background-image: url(/images/wheat-procurementREAL.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+#pop-blue
+{
+	color: blue;
+}
+
+#pop-orange
+{
+	color: orange;
+}
+
+#pop-green
+{
+	color: green;
+}
+
+#pop-red
+{
+	color: red;
+}

@@ -1,0 +1,7 @@
+{
+ "name": "flare",
+ "children": [
+    {"name": "Hungry", "size": 14787},
+    {"name": "DataSchema", "size": 38}
+  ]
+}
