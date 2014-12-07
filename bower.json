@@ -17,6 +17,8 @@
   "dependencies": {
     "parallax": "~2.1.3",
     "highcharts": "~4.0.4",
-    "stats.js": "*"
+    "stats.js": "*",
+    "topojson": "~1.6.18",
+    "queue-async": "~1.0.7"
   }
 }
