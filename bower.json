@@ -15,8 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "parallax": "~2.1.3",
-    "highcharts": "~4.0.4",
-    "stats.js": "*"
+    "highcharts": "~4.0.4"
   }
 }
