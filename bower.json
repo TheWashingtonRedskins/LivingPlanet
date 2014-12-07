@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "topojson": "~1.6.18",
-    "queue-async": "~1.0.7"
+    "queue-async": "~1.0.7",
     "highcharts": "~4.0.4"
   }
 }
