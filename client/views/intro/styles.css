@@ -1,0 +1,116 @@
+.scene,
+.layer {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    pointer-events:none;
+}
+
+.scene {
+    min-height: 460px;
+    position: relative;
+    overflow: hidden; 
+}
+
+.layer {
+position: absolute; }
+.layer div {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+backface-visibility: hidden; }
+
+.title {
+    font-size: 3em;
+    text-shadow: 0 8px 6px rgba(0, 0, 0, 0.6);
+    margin-top: -0.7em;
+    position: absolute;
+    width: 100%;
+top: 55%; }
+
+.hwlogo {
+    font-size: 3em;
+    text-shadow: 0 8px 6px rgba(0, 0, 0, 0.6);
+    margin-top: -0.7em;
+    background: url(/images/hw.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    height: 20%;
+    top: 43.5%;
+}
+
+.logocontainer {
+    height: 18% !important;
+    position: absolute;
+    top: 55%;
+    width: 100%;
+}
+
+.sky {
+    background: url(/intro/sky.png) no-repeat 100% 100%;
+    background-size: cover;
+    position: absolute;
+    left: -5%;
+    bottom: -15%;
+    top: -5%; 
+    right: -20%;
+}
+
+.mountain {
+    background: transparent repeat-x;
+    position: absolute;
+}
+.mountain.mountain1 {
+    background-image: url(/intro/mountain1.png); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    left: -35px;
+    height: 50%;
+    bottom: 5%;
+}
+.mountain.mountain2 {
+    background-image: url(/intro/mountain2.png); 
+    background-size: contain;
+    background-position: right top;
+    background-repeat: no-repeat;
+    right: -10%;
+    left: -10%;
+    bottom: 0;
+    top: 30%;
+}
+
+.foreground  {
+    background: transparent repeat-x;
+    position: absolute;
+}
+.foreground.slice0 {
+    background-image: url(/intro/slice0.png); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: -10%;
+    right: -10%;
+    height: 1000px;
+    bottom: -40%;
+    background-position: center bottom;
+}
+.foreground.slice1 {
+    background-image: url(/intro/slice1.png); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: -10%;
+    right: -10%;
+    height: 1000px;
+    bottom: -20%;
+    background-position: center bottom;
+}

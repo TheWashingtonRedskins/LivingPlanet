@@ -9,4 +9,5 @@ insecure
 coffeescript
 iron:router
 underscore
+mquandalle:bower
 
