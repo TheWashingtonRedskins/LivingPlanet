@@ -1,0 +1,20 @@
+#titleContainer {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    padding-top: 5%;
+}
+
+#titleContainer h1 {
+    font-size: 6em;
+    margin-bottom:0;
+    font-weight: 800;
+}
+#titleContainer h3 {
+    font-size: 2em;
+    margin-bottom:0;
+    font-weight: 400;
+    margin-top:0;
+}
