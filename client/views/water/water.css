@@ -1,0 +1,46 @@
+#comparison-container{
+
+}
+
+.water-number{
+	/*display: block;*/
+	font-size: 6em;
+}
+
+#usa-num{
+	color: blue;
+}
+
+#world-num{
+	color: red;
+}
+
+.water-expand{
+	height: 4em;
+}
+
+.water-expand *{
+	height: 100%;
+}
+
+#water-usa-expand{
+
+}
+
+#water-world-expand{
+
+}
+
+#water-less{
+	font-size: 10em;
+	font-family: helvetica;
+	font-weight: 100;
+}
+
+#water-toilet{
+	width: 10%;
+}
+
+#water-phone{
+	width: 5%;
+}

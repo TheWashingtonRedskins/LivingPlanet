@@ -1,0 +1,24 @@
+.intro-wrapper{
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/sky.jpg');
+}
+
+#intro-container{
+  width: 40em;
+  display: none;
+  /*background-color: black;*/
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  /*margin-top: 10em;*/
+}
+
+#title-text{
+  font-family: helvetica;
+  color: green;
+  font-weight: 100;
+  font-size: 6em;
+  /*display: none;*/
+}
