@@ -122,55 +122,23 @@ if (Meteor.isClient) {
   };
 
   // Inside the if (Meteor.isClient) block, right after Template.body.helpers:
-  Template.body.events({
-    "change #yearOp1": function (event) {
+  Template.pie.events({
+    "click #yearOp1": function (event) {
 
-      var check = event.target.checked;
-      if (check === NULL) {
-        event.target.checked = "checked";
-      }else {
-        $('#yearOp1').removeAttr("checked");
-      } 
-      state = !state;
-      transition(state);
+      if (!state){
+        state = !state;
+        transition(state);
+      }
 
     },
-    "change #yearOp2": function (event) {
-
-      
-      var check = event.target.checked;
-      if (check === NULL) {
-        event.target.checked = "checked";
-      }else {
-        $('#yearOp2').removeAttr("checked");
-      } 
-      state = !state;
-      transition(state);
+    "click #yearOp2": function (event) {
+   
+      if (state){
+        state = !state;
+        transition(state);
+      }
 
     }
-  });
-
-  // add the namespace `.tplquestions` so all event handlers can be removed easily
-  $(document.body).on('click', '#yearOp1', function(e){
-     var check = event.target.checked;
-      if (check === NULL) {
-        event.target.checked = "checked";
-      }else {
-        $('#yearOp1').removeAttr("checked");
-      } 
-      state = !state;
-      transition(state);
-  });
-  // add the namespace `.tplquestions` so all event handlers can be removed easily
-  $(document.body).on('click', '#yearOp2', function(e){
-     var check = event.target.checked;
-      if (check === NULL) {
-        event.target.checked = "checked";
-      }else {
-        $('#yearOp2').removeAttr("checked");
-      } 
-      state = !state;
-      transition(state);
   });
 }
 
