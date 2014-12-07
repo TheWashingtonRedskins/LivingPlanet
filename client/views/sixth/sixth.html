@@ -1,0 +1,20 @@
+<template name="sixth">
+<h1>The Sixth Mass Extinction</h1>
+  <h2>It sounds intimidating doesn't it? Don't worry though, humans aren't in danger, or are they?</h2>
+  <h4>The Sixth Mass Extinction, also referred to as the Holocene Extinction, is the extinction of many of the world's plant and animal species largely due to human activity. Often times these species are accustomed to a certain type of environment and for one reason or anther, the impact of humans has destroyed those environments. Sometimes we introduce invasive species that devastate a balanced ecosystem, or we dump our industrial waste into an ecosystm and damage that environement's food supply. Though it may not seem like this affects us humans directly, we are changing the way our foodweb works by killing off certain species. There is a cascading effect that we have already started to feel. </h4>https://en.wikipedia.org/wiki/Holocene_extinction
+
+  {{> pie}}
+
+  credits:
+  <br>
+  https://portals.iucn.org/library/efiles/html/Red%20List%202004/completed/Section2.html<br>
+  http://www.cbd.int/doc/publications/gbo/gbo3-final-en.pdf
+</template>
+
+<template name="pie">
+  <form>
+	 <label><input id="yearOp1" type="radio" name="dataset" value="2004" checked> 2004</label>
+	 <label><input id="yearOp2" type="radio" name="dataset" value="2009"> 2009</label>
+  </form>
+  <div id="pie"></div>
+</template>
