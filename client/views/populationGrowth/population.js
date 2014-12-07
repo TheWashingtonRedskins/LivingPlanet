@@ -35,7 +35,7 @@ queue()
         var ids = [566, 586, 50, 356, 76, 360, 840, 156, 392, 643];//[50, 76, 156, 356, 360, 392, 566, 586, 643, 840];
         return _.contains(ids, country.id);
       });
-      console.log(arr);
+      // console.log(arr);
       var svg = d3.select("#map").selectAll("svg")
           .data(arr)
         .enter().append("svg")
@@ -44,9 +44,14 @@ queue()
             kappa = areaById[d.id];
             var svg = d3.select(this),
                 b = d3.geo.bounds(d),
+                tooSmall = 2,
+
                 centroid = b[0][0] === -180 && b[1][0] === 180
                   ? [100, .5 * (b[0][1] + b[1][1])] // Russia
                   : [.5 * (b[0][0] + b[1][0]), .5 * (b[0][1] + b[1][1])];
+
+
+
 
 
             projection.rotate(Math.abs(b[0][1]) === -90 ? [0, 90] : Math.abs(b[1][1]) === 90 ? [0, -90] : [-centroid[0], -centroid[1]]);
@@ -55,7 +60,20 @@ queue()
                 s = Math.sqrt(d.area / area) * scale,
                 dx = bounds[1][0] - bounds[0][0],
                 dy = bounds[1][1] - bounds[0][1];
+
+            if(areaById[d.id] == 41.3)
+            {
+                dx = dx + 10;
+                dy = dy + 10;
+            }
+
+            if(kappa == 17.1 || kappa == -3.6 )
+            {
+                s = s * tooSmall;
+            }
+
             svg 
+                .attr("class", "population-img")
                 .attr("width", dx * s + 150)
                 .attr("height", dy * s + 150)
               .append("g")
@@ -66,12 +84,13 @@ queue()
           })
           .sort(function(a, b) { return areaById[b.id] - areaById[a.id]; })
           .on("mouseover", function(d, i) {
-            var t = tooltip.html("").style("display", "block");
+            var t = tooltip.html("").style("display", "block").style("left", mouse.x+"px").style("top", mouse.y+"px");
             t.append("span").attr("class", "country").text(nameById[d.id]);
             t.append("span").text(": " + areaById[d.id] + "% growth");
             t.append("span").text("; ranked " + ++i).append("sup").text(ordinal(i));
             t.append("span").text("; " + continentById[d.id]);
             t.append("span").text(".");
+
             var bounds = path.bounds(d),
                 area = path.area(d),
                 s = Math.sqrt(d.area / area) * scale,
@@ -84,7 +103,7 @@ queue()
                 centerX = svg.width/2,
                 centerY = svg.height/2;
 
-            console.log(this);
+            // console.log(this);
 
             d3.select(this).transition().style("transform", "scale("+factor+")");//("width", (dx * s + 150) *  (1 + (areaById[d.id]/100))  );
             //d3.select(this).attr("height", (dy * s + 150) * (1 + (areaById[d.id]/100))  );
