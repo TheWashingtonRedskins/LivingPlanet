@@ -10,4 +10,5 @@ coffeescript
 iron:router
 underscore
 mquandalle:bower
+d3js:d3
 
