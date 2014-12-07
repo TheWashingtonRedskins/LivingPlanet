@@ -215,7 +215,7 @@ Boid = ->
   return
 
 init = ->
-  camera = new THREE.PerspectiveCamera(60, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000)
+  camera = new THREE.PerspectiveCamera(70, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000)
   camera.position.z = 800
   scene = new THREE.Scene()
   birds = []
@@ -278,7 +278,7 @@ render = ->
     bird = birds[i]
     bird.position.copy boids[i].position
     color = bird.material.color
-    color.r = color.g = color.b = (500 - bird.position.z) / 1000
+    color.r = color.g = color.b = 0 #(500 - bird.position.z) / 1000
     bird.rotation.y = Math.atan2(-boid.velocity.z, boid.velocity.x)
     bird.rotation.z = Math.asin(boid.velocity.y / boid.velocity.length())
     bird.phase = (bird.phase + (Math.max(0, bird.rotation.z) + 0.1)) % 62.83
@@ -294,7 +294,7 @@ Template.intro.rendered = ->
   container = $("#birdContainer")[0]
   SCREEN_WIDTH = container.innerWidth
   SCREEN_HEIGHT = container.innerHeight
-  SCREEN_WIDTH_HALF = SCREEN_WIDTH / 2
-  SCREEN_HEIGHT_HALF = SCREEN_HEIGHT / 2
+  SCREEN_WIDTH_HALF = screen.innerHeight / 2
+  SCREEN_HEIGHT_HALF = screen.innerWidth / 2
   init()
   animate()
