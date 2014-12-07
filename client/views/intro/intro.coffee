@@ -18,39 +18,19 @@ projector = new THREE.Projector()
 cameraTarget = new THREE.Vector3()
 pointLight = null
 uniforms2 = null
-loader = null
-overlay = null
-mouse = new THREE.Vector2(-0.5, 0.5)
-touchDevice = (("ontouchstart" of document) or (navigator.userAgent.match(/ipad|iphone|android/i)?))
 scaleRatio = 1
-scaleRatio = 2  if touchDevice
-bgSprite = null
-particles = null
-music = null
+#bgSprite = null
 loadedItems = 0
 checkLoading = ->
   ++loadedItems
-  if loadedItems >= 6
+  if loadedItems >= 4
     animate()
-    if music
-      music.play()
-      volumeTween = new TWEEN.Tween(music).to(
-        volume: 0.5
-      , 4000).easing(TWEEN.Easing.Cubic.In)
-      volumeTween.start()
-    alphaTween = new TWEEN.Tween(bgSprite.material).to(
-      opacity: 0
-    , 4000).easing(TWEEN.Easing.Cubic.In).onComplete(->
-      scene.remove bgSprite
-      return
-    )
-    alphaTween.start()
   return
 init = ->
   console.log "Initing"
   container = $("#introContainer")[0]
-  global.camera = camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 1, 50000)
-  camera.position.y = 750
+  global.camera = camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 50000)
+  camera.position.y = 500
   camera.position.z = 2000
   camera.position.x = 750
   camera.rotation.setX(45)
@@ -59,18 +39,18 @@ init = ->
   scene.add camera
   
   # black cover
-  bgImage = new THREE.Texture(generateTexture())
-  bgImage.needsUpdate = true
-  spriteMaterial = new THREE.SpriteMaterial(
-    map: bgImage
-    useScreenCoordinates: true
-  )
-  bgSprite = new THREE.Sprite(spriteMaterial)
-  bgSprite.position.set window.innerWidth >> 1, window.innerHeight >> 1, 0
-  bgSprite.scale.set 5000, 5000
-  scene.add bgSprite
+  #bgImage = new THREE.Texture(generateTexture())
+  #bgImage.needsUpdate = true
+  #spriteMaterial = new THREE.SpriteMaterial(
+  #  map: bgImage
+  #  useScreenCoordinates: true
+  #)
+  #bgSprite = new THREE.Sprite(spriteMaterial)
+  #bgSprite.position.set window.innerWidth >> 1, window.innerHeight >> 1, 0
+  #bgSprite.scale.set 5000, 5000
+  #scene.add bgSprite
   
-  fog = new THREE.Fog(0x1b0c02, 5000, 12000)
+  #fog = new THREE.Fog(0x1b0c02, 5000, 12000)
   
   # sun
   m = new THREE.MeshBasicMaterial(
@@ -106,10 +86,6 @@ init = ->
       type: "f"
       value: []
 
-    customColor:
-      type: "c"
-      value: new THREE.Color(0xffffff)
-
   uniforms2 =
     map:
       type: "t"
@@ -118,18 +94,6 @@ init = ->
     map2:
       type: "t"
       value: THREE.ImageUtils.loadTexture("/textures/leaf2.png", `null`, checkLoading)
-
-    fogColor:
-      type: "c"
-      value: fog.color
-
-    fogNear:
-      type: "f"
-      value: fog.near
-
-    fogFar:
-      type: "f"
-      value: fog.far
 
     globalTime:
       type: "f"
@@ -141,11 +105,7 @@ init = ->
 
     black:
       type: "f"
-      value: 1.0
-
-    lightPos:
-      type: "v2"
-      value: new THREE.Vector2()
+      value: 0.0
 
   material = new THREE.ShaderMaterial(
     uniforms: uniforms2
@@ -164,7 +124,7 @@ init = ->
   geo.computeFaceNormals()
   plane = new THREE.Mesh(geo)
   i = 0
-  while i < 5000
+  while i < 500
     plane.position.x = Math.random() * 10000 - 2500
     plane.position.y = Math.random() * 5000 - 250
     plane.position.z = 0
@@ -175,7 +135,6 @@ init = ->
   values_size = attributes.size.value
   values_seed = attributes.seed.value
   values_time = attributes.time.value
-  values_colors = attributes.customColor.value
   testGeometry = new THREE.PlaneGeometry(2, 2)
   THREE.GeometryUtils.triangulateQuads testGeometry
   testGeometry.applyMatrix new THREE.Matrix4().makeRotationFromEuler(new THREE.Vector3(-Math.PI / 2, 0, 0))
@@ -204,34 +163,19 @@ init = ->
     values_time[v + 1] = time
     values_time[v + 2] = time
     values_time[v + 3] = time
-    color = new THREE.Color(0xffffff)
-    color.setHSL 0.05 + Math.random() * 0.1, 1.0, 0.2 + Math.random() * 0.4
-    values_colors[v] = color
-    values_colors[v + 1] = color
-    values_colors[v + 2] = color
-    values_colors[v + 3] = color
     v += 4
   objects = new THREE.Mesh(geometry, material)
   objects.position.z = -7500
   scene.add objects
   
-  # dirt
-  overlayMaterial = new THREE.SpriteMaterial(
-    map: THREE.ImageUtils.loadTexture("/textures/lensdirt.jpg", `null`, checkLoading)
-    useScreenCoordinates: true
-    fog: false
-    opacity: 0.25
-  )
-  overlay = new THREE.Sprite(overlayMaterial)
-  overlay.scale.set window.innerWidth / scaleRatio, window.innerHeight / scaleRatio, 1
-  overlay.position.set (window.innerWidth / scaleRatio) / 2, (window.innerHeight / scaleRatio) / 2, 0
-  camera.add overlay
+  light.lookAt camera.position
+
   try
     
     # renderer
     renderer = new THREE.WebGLRenderer(antialias: false, alpha: true)
     renderer.setSize window.innerWidth / scaleRatio, window.innerHeight / scaleRatio
-    renderer.setClearColor 0x151001
+    renderer.setClearColor 0xffffff, 0
     renderer.sortObjects = false
     parameters =
       minFilter: THREE.LinearFilter
@@ -251,8 +195,6 @@ init = ->
     composer.addPass effectCopy
     container.appendChild renderer.domElement
     has_gl = true
-    document.addEventListener "mousemove", onMouseMove, false
-    document.addEventListener "touchmove", onTouchMove, false
     window.addEventListener "resize", onWindowResize, false
     if scaleRatio > 1
       renderer.domElement.style.webkitTransform = "scale3d(" + scaleRatio + ", " + scaleRatio + ", 1)"
@@ -265,10 +207,8 @@ init = ->
   catch e
     
     # need webgl
-    document.getElementById("info").innerHTML = "<P><BR><B>Note.</B> You need a modern browser that supports WebGL for this to run the way it is intended.<BR>For example. <a href='http://www.google.com/landing/chrome/beta/' target='_blank'>Google Chrome 9+</a> or <a href='http://www.mozilla.com/firefox/beta/' target='_blank'>Firefox 4+</a>.<BR><BR>If you are already using one of those browsers and still see this message, it's possible that you<BR>have old blacklisted GPU drivers. Try updating the drivers for your graphic card.<BR>Or try to set a '--ignore-gpu-blacklist' switch for the browser.</P><CENTER><BR><img src='../general/WebGL_logo.png' border='0'></CENTER>"
-    document.getElementById("info").style.display = "block"
+    alert "Please view this website in a browser that supports webgl."
     return
-  treeLoaded()
   return
 generateTexture = ->
   canvas = document.createElement("canvas")
@@ -292,84 +232,6 @@ onWindowResize = (event) ->
   depthTarget = new THREE.WebGLRenderTarget((w / scaleRatio) * depthScale, (w / scaleRatio) * depthScale, parameters)
   composer.reset()
   composer.setSize w / scaleRatio, h / scaleRatio
-  if overlay
-    overlay.scale.set w / scaleRatio, h / scaleRatio, 1
-    overlay.position.set (w / scaleRatio) / 2, (h / scaleRatio) / 2, 0
-  return
-treeLoaded = ->
-  # Particles
-  map = THREE.ImageUtils.loadTexture("/textures/bob.png", `null`, checkLoading)
-  attributes =
-    size:
-      type: "f"
-      value: []
-
-    time:
-      type: "f"
-      value: []
-
-  uniforms =
-    color:
-      type: "c"
-      value: new THREE.Color(0xffffff)
-
-    texture:
-      type: "t"
-      value: map
-
-    globalTime:
-      type: "f"
-      value: 0.0
-
-    bass:
-      type: "f"
-      value: 0.0
-
-  uniforms.color.value.setHSL 0.15, 1.0, 0.75
-  shaderMaterial = new THREE.ShaderMaterial(
-    uniforms: uniforms
-    attributes: attributes
-    vertexShader: pVS
-    fragmentShader: pFS
-    transparent: true
-  )
-  geometry = new THREE.Geometry()
-  i = 0
-  while i < 1000
-    vertex = new THREE.Vector3(Math.random() * 4000 - 2000, Math.random() * 4000 - 2000, Math.random() * -3000 - 250)
-    geometry.vertices.push vertex
-    i++
-  particles = new THREE.ParticleSystem(geometry, shaderMaterial)
-  vertices = geometry.vertices
-  values_size = attributes.size.value
-  values_time = attributes.time.value
-  v = 0
-
-  while v < vertices.length
-    values_size[v] = (40 + Math.random() * 40) / scaleRatio
-    v++
-  particles.position.z = camera.position.z
-  scene.add particles
-  return
-getScreenPosition = (object) ->
-  vector = projector.projectVector(new THREE.Vector3().getPositionFromMatrix(object.matrixWorld), camera)
-  vector
-onMouseMove = (event) ->
-  event.preventDefault()
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
-  return
-onTouchMove = (event) ->
-  event.preventDefault()
-  i = 0
-
-  while i < event.changedTouches.length
-    tx = (event.changedTouches[i].clientX / window.innerWidth) * 2 - 1
-    ty = -(event.changedTouches[i].clientY / window.innerHeight) * 2 + 1
-    mouse.x = tx
-    mouse.y = ty
-    i++
-  return
 animate = ->
   requestAnimationFrame animate
   render()
@@ -380,31 +242,10 @@ render = ->
   oldTime = time
   delta = 1000 / 60  if isNaN(delta) or delta > 1000 or delta is 0
   optimalDivider = delta / 16
-  #camera.position.x = 600
-  #camera.position.y = 5000
-  #camera.lookAt scene.position
-  
-  #camera.up.x += (mouse.x*0.25 - camera.up.x)/30;
-  #camera.up.z += (mouse.y*0.25 - camera.up.z)/30;
   uniforms2.globalTime.value += delta * 0.00005
-  TWEEN.update()
-  pos = getScreenPosition(light)
-  uniforms2.lightPos.value.x = (pos.x + 0.5)
-  uniforms2.lightPos.value.y = (pos.y + 0.5)
-  light.lookAt camera.position
-  lng = pos.x * pos.x + pos.y * pos.y
-  overlay.material.opacity = Math.max(0.05, (0.2 - lng))
-  particles.material.uniforms.globalTime.value += delta * 0.00005
   if has_gl
     renderer.clear()
-    i = 0
-
-    uniforms2.black.value = 0
-    light.visible = true
-    light.material.opacity = 0.8
     renderer.render scene, camera, depthTarget, true
-    uniforms2.black.value = 1
-    light.material.opacity = 0.5
     composer.render 0.01
   return
 Template.intro.rendered = ->
