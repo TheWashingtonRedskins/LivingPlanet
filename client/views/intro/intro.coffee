@@ -11,8 +11,6 @@ has_gl = false
 delta = null
 time = null
 oldTime = null
-effectRadialBlur = null
-effectBloom = null
 depthTarget = null
 depthScale = 0.5
 light = null
@@ -20,10 +18,8 @@ projector = new THREE.Projector()
 cameraTarget = new THREE.Vector3()
 pointLight = null
 uniforms2 = null
-lensflare = null
 loader = null
 overlay = null
-trees = []
 mouse = new THREE.Vector2(-0.5, 0.5)
 touchDevice = (("ontouchstart" of document) or (navigator.userAgent.match(/ipad|iphone|android/i)?))
 scaleRatio = 1
@@ -34,7 +30,7 @@ music = null
 loadedItems = 0
 checkLoading = ->
   ++loadedItems
-  if loadedItems >= 8
+  if loadedItems >= 6
     animate()
     if music
       music.play()
@@ -49,10 +45,6 @@ checkLoading = ->
       return
     )
     alphaTween.start()
-    lensTween = new TWEEN.Tween(lensflare.uniforms["alpha"]).to(
-      value: 1
-    , 4000).easing(TWEEN.Easing.Cubic.In)
-    lensTween.start()
   return
 init = ->
   console.log "Initing"
@@ -78,9 +70,6 @@ init = ->
   bgSprite.scale.set 5000, 5000
   scene.add bgSprite
   
-  # tree
-  loader = new THREE.JSONLoader()
-  loader.load "/objects/Tree_04.js", treeLoaded
   fog = new THREE.Fog(0x1b0c02, 5000, 12000)
   
   # sun
@@ -175,9 +164,9 @@ init = ->
   geo.computeFaceNormals()
   plane = new THREE.Mesh(geo)
   i = 0
-  while i < 30000
-    plane.position.x = Math.random() * 15000 - 7500
-    plane.position.y = Math.random() * 15000 - 7500
+  while i < 5000
+    plane.position.x = Math.random() * 10000 - 2500
+    plane.position.y = Math.random() * 5000 - 250
     plane.position.z = 0
     THREE.GeometryUtils.merge geometry, plane
     i++
@@ -254,21 +243,11 @@ init = ->
     # postprocessing
     renderer.autoClear = false
     renderModel = new THREE.RenderPass(scene, camera)
-    effectRadialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
-    effectRadialBlur.uniforms["tDepth"].value = depthTarget
-    lensflare = new THREE.ShaderPass(THREE.LensflareShader)
-    lensflare.uniforms["pos"].value = new THREE.Vector2(0.0, 0.5)
-    lensflare.uniforms["res"].value = new THREE.Vector2(window.innerWidth / scaleRatio, window.innerHeight / scaleRatio)
-    lensflare.uniforms["alpha"].value = 0
-    effectBloom = new THREE.BloomPass(0.7)
     effectCopy = new THREE.ShaderPass(THREE.CopyShader)
     effectCopy.renderToScreen = true
     composer = new THREE.EffectComposer(renderer)
     composer.setSize window.innerWidth / scaleRatio, window.innerHeight / scaleRatio
     composer.addPass renderModel
-    composer.addPass effectRadialBlur
-    composer.addPass lensflare
-    composer.addPass effectBloom
     composer.addPass effectCopy
     container.appendChild renderer.domElement
     has_gl = true
@@ -289,6 +268,7 @@ init = ->
     document.getElementById("info").innerHTML = "<P><BR><B>Note.</B> You need a modern browser that supports WebGL for this to run the way it is intended.<BR>For example. <a href='http://www.google.com/landing/chrome/beta/' target='_blank'>Google Chrome 9+</a> or <a href='http://www.mozilla.com/firefox/beta/' target='_blank'>Firefox 4+</a>.<BR><BR>If you are already using one of those browsers and still see this message, it's possible that you<BR>have old blacklisted GPU drivers. Try updating the drivers for your graphic card.<BR>Or try to set a '--ignore-gpu-blacklist' switch for the browser.</P><CENTER><BR><img src='../general/WebGL_logo.png' border='0'></CENTER>"
     document.getElementById("info").style.display = "block"
     return
+  treeLoaded()
   return
 generateTexture = ->
   canvas = document.createElement("canvas")
@@ -310,104 +290,13 @@ onWindowResize = (event) ->
     format: THREE.RGBFormat
 
   depthTarget = new THREE.WebGLRenderTarget((w / scaleRatio) * depthScale, (w / scaleRatio) * depthScale, parameters)
-  effectRadialBlur.uniforms["tDepth"].value = depthTarget
-  lensflare.uniforms["res"].value = new THREE.Vector2(w / scaleRatio, h / scaleRatio)
   composer.reset()
   composer.setSize w / scaleRatio, h / scaleRatio
   if overlay
     overlay.scale.set w / scaleRatio, h / scaleRatio, 1
     overlay.position.set (w / scaleRatio) / 2, (h / scaleRatio) / 2, 0
   return
-getTreeMaterial = (texture, shadow) ->
-  attributes = {}
-  uniforms =
-    color:
-      type: "c"
-      value: new THREE.Color()
-
-    map:
-      type: "t"
-      value: texture
-
-    shadow:
-      type: "t"
-      value: shadow
-
-    globalTime:
-      type: "f"
-      value: 0.0
-
-    lightPos:
-      type: "v2"
-      value: new THREE.Vector2()
-
-  material = new THREE.ShaderMaterial(
-    uniforms: uniforms
-    attributes: attributes
-    vertexShader: treeVS
-    fragmentShader: treeFS
-    transparent: true
-    side: THREE.DoubleSide
-  )
-  material
-treeLoaded = (geometry, mm) ->
-  geometry.applyMatrix new THREE.Matrix4().makeRotationFromEuler(new THREE.Vector3(-Math.PI / 2, 0, 0))
-  
-  #geometry.computeVertexNormals();
-  #geometry.computeFaceNormals();
-  center = new THREE.Vector3(0, 28, 0)
-  i = 0
-
-  while i < geometry.faces.length
-    face = geometry.faces[i]
-    a = geometry.vertices[face.a]
-    b = geometry.vertices[face.b]
-    c = geometry.vertices[face.c]
-    face.vertexNormals[0] = new THREE.Vector3().copy(a).sub(center).normalize()
-    face.vertexNormals[1] = new THREE.Vector3().copy(b).sub(center).normalize()
-    face.vertexNormals[2] = new THREE.Vector3().copy(c).sub(center).normalize()
-    i++
-  texture = THREE.ImageUtils.loadTexture("/textures/test4.png", `null`, checkLoading)
-  shadow = THREE.ImageUtils.loadTexture("/textures/test6.png", `null`, checkLoading)
-  shadow.wrapS = THREE.MirroredRepeatWrapping
-  shadow.wrapT = THREE.MirroredRepeatWrapping
-  num = 1
-  
-  # trees
-  i = 0
-
-  while i < num
-    material0 = getTreeMaterial(texture, shadow)
-    material1 = new THREE.MeshBasicMaterial(
-      color: 0x000000
-      side: THREE.DoubleSide
-    )
-    c = new THREE.Color().setHSL(0.025 + Math.random() * 0.15, 0.75, 0.45)
-    material0.uniforms.color.value = c
-    material0.side = THREE.FrontSide  if i is 0
-    mf = new THREE.MeshFaceMaterial([
-      material0
-      material1
-    ])
-    a = (i / num) * Math.PI * 2
-    radius = 4000 + Math.random() * 4000
-    tree = new THREE.Mesh(geometry, mf)
-    s = 150 + Math.random() * 50
-    tree.scale.set s, 150, s
-    tree.position.set Math.sin(a) * radius, Math.cos(a) * radius, 2500
-    tree.rotation.z = Math.random() * (Math.PI * 2)
-    tree.seed = Math.random() * num
-    tree.light = true
-    if i is 0
-      tree.position.set -9000, 0, -5500
-      tree.rotation.x = 2
-      tree.scale.set 200, 200, 200
-      tree.rotation.y = -Math.PI / 2
-    console.log scene
-    scene.add tree
-    trees.push tree
-    i++
-  
+treeLoaded = ->
   # Particles
   map = THREE.ImageUtils.loadTexture("/textures/bob.png", `null`, checkLoading)
   attributes =
@@ -500,10 +389,6 @@ render = ->
   uniforms2.globalTime.value += delta * 0.00005
   TWEEN.update()
   pos = getScreenPosition(light)
-  effectRadialBlur.uniforms["center"].value.x = (pos.x + 0.5) * 0.8 + 0.1
-  effectRadialBlur.uniforms["center"].value.y = (pos.y + 0.5) * 0.8 + 0.1
-  lensflare.uniforms["pos"].value.x = (pos.x) #*1.25;
-  lensflare.uniforms["pos"].value.y = (pos.y * -1) #*1.25;
   uniforms2.lightPos.value.x = (pos.x + 0.5)
   uniforms2.lightPos.value.y = (pos.y + 0.5)
   light.lookAt camera.position
@@ -514,12 +399,6 @@ render = ->
     renderer.clear()
     i = 0
 
-    while i < trees.length
-      if trees[i].light
-        trees[i].material.materials[0].uniforms.lightPos.value.x = (pos.x + 0.5)
-        trees[i].material.materials[0].uniforms.lightPos.value.y = (pos.y + 0.5)
-        trees[i].material.materials[0].uniforms.globalTime.value += delta * 0.001
-      i++
     uniforms2.black.value = 0
     light.visible = true
     light.material.opacity = 0.8
