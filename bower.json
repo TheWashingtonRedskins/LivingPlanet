@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "homepage": "https://github.com/TheWashingtonRedskins/LivingPlanet",
   "authors": [
-    "Christian Stewart <kidovate@gmail.com>"
+    "Christian Stewart <kidovate@gmail.com>",
+    "James Lennon <jameslennon321@gmail.com>",
+    "Ethan Madison <ethan@ethanmad.com>",
+    "Jake Saferstein <jakesafo@gmail.com>",
+    "David Woldenberg <dwoldenberg1@gmail.com>"
   ],
   "description": "Koding hackathon",
   "license": "MIT",
@@ -15,7 +19,9 @@
     "tests"
   ],
   "dependencies": {
-    "highcharts": "~4.0.4",
-    "materialize": "*"
+    "materialize": "*",
+    "topojson": "~1.6.18",
+    "queue-async": "~1.0.7",
+    "highcharts": "~4.0.4"
   }
 }
