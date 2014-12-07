@@ -95,3 +95,69 @@ function collide(node) {
   };
 }
 }
+
+
+Template.visualizeHunger2.rendered = function()
+{
+$(function () {
+    $('#container').highcharts({
+
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                viewDistance: 25,
+                depth: 40
+            },
+            marginTop: 80,
+            marginRight: 40,
+        },
+
+        title: {
+            text: 'How undernourished hungry people are in each region'
+        },
+
+        xAxis: {
+            categories: ['Developed Countries', 'Near East and North Africa', 'Latin America and Caribbean', 'Asia and Pacific', 'Sub-Sahara Africa']
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            ceiling: 100,
+            title: {
+                text: 'Percent of Countries'
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y}%'
+        },
+
+        plotOptions: {
+            column: {
+                depth: 40
+            }
+        },
+
+        series: [{
+            name: '<200 Calories undernourished',
+            data: [100, 75, 24, 16, 5],
+            stack: 'male'
+        }, {
+            name: '200-300 Calories undernourished',
+            data: [0, 19, 67, 68, 49],
+            stack: 'male'
+        }, {
+            name: '>300 Calories undernourished',
+            data: [0, 6, 9, 16, 46],
+            stack: 'female'
+        }]
+    });
+});
+
+
+}
