@@ -14,7 +14,7 @@ We used modern web techonologies like Meteor.JS and several visualization librar
 
 Here is a screenshot of our site. You can chose a topic to learn about.
 
-!Screenshot](http://i.imgur.com/YFraweN.gif "Screenshot")
+![Screenshot](http://i.imgur.com/YFraweN.gif "Screenshot")
 
 ## APIs used
 
