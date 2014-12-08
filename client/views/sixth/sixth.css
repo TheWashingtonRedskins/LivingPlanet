@@ -4,10 +4,11 @@
 	width: 100%;
 }
 #legend {
-	border: 1px solid black;
 	width: 300px;
 	display: inline-block;
 	float: right;
+	width: 260px;
+	padding-left: 60px;
 }
 
 .swatch {
@@ -22,4 +23,20 @@
 	display: inline-block;
 	float: left;
     width: 100%;
+}
+#sixthCont {
+	width: 100%;
+	height: 100%;
+	min-width: 1050px;
+	max-width: 100%;
+}
+#titlePie {
+	font-weight: bold;
+	width: 100%; 
+	text-align:center; 
+	font-size: 2em;
+}
+
+.yearOp{
+	background-color: #009688 !important;
 }

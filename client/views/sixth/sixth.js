@@ -1,5 +1,5 @@
 var state =1;
-var pie, innerRadius, outerRadius, arc, color, svg;
+var pie, innerRadius, outerRadius, arc, color, svg, data0, data1;
 var dataVal0=[];
 var dataVal1=[];
 var legend=[];
@@ -76,9 +76,9 @@ Template.pie.rendered =function(){
     outerRadius = Math.min(width, height) * .5 - 10;
     innerRadius = outerRadius * .6;
 
-    var data,
-    data0 = [{value: 17987, type: "Threatened with extinction", percentage: 37}, {value: 875, type: "Extinct", percentage: 2}, {value: 3931, type: "Near threatened", percentage: 8}, {value: 6548, type: "Data deficient", percentage: 14},{value: 19032, type: "Least cocnern", percentage: 40}],//[{value: 19032, type: "Least Concern", percentage: 40}, {value: 3931, type: "Near threatened", percentage: 8}, {value: 9075, type: "Vulnerable", percentage: 19}, {value: 4891, type: "Endangered", percentage: 10},{value: 3325, type: "Critically endangered", percentage: 7},{value: 875, type: "Extinct", percentage: 2},{value: 6548, type: "Data deficient", percentage: 14}],//2009
-    data1 = [{value: 15589, type: "Threatened with extinction", percentage: 41}, {value: 844, type: "Extinct", percentage: 2}, {value: 3700, type: "Near threatened", percentage: 10}, {value: 3580, type: "Data deficient", percentage: 10},{value: 14334, type: "Least cocnern", percentage: 38}];//2004
+    var data;
+    data0 = [{value: 17987, type: "Threatened with extinction", percentage: 37}, {value: 875, type: "Extinct", percentage: 2}, {value: 3931, type: "Near threatened", percentage: 7}, {value: 6548, type: "Data deficient", percentage: 14},{value: 19032, type: "Least concern", percentage: 40}],//2009
+    data1 = [{value: 15589, type: "Threatened with extinction", percentage: 41}, {value: 844, type: "Extinct", percentage: 2}, {value: 3700, type: "Near threatened", percentage: 10}, {value: 3580, type: "Data deficient", percentage: 10},{value: 14334, type: "Least concern", percentage: 37}];//2004
 
     color = d3.scale.category20();
 
@@ -91,13 +91,13 @@ Template.pie.rendered =function(){
     .attr("width", width)
     .attr("height", height);
 
-    for (i = 0; i < data0.length; i ++) {
-        dataVal0[i] = data0[i].value;
-        legend[i] = {"type": data0[i].type, "color": color(i)};
+    for (i = 0; i < data1.length; i ++) {
+        dataVal0[i] = data1[i].value;
+        legend[i] = {"type": data1[i].type, "color": color(i), "percent": data1[i].percentage };
     }
 
-    for (i = 0; i < data1.length; i ++) {
-        dataVal1[i] = data1[i].value;
+    for (i = 0; i < data0.length; i ++) {
+        dataVal1[i] = data0[i].value;
     }
 
     svg.selectAll(".arc")
@@ -121,6 +121,11 @@ Template.pie.events({
         if (!state){
             state = !state;
             transition(state);
+            Session.set("year", 2004);
+            for (i = 0; i < data1.length; i ++) {
+                legend[i] = {"type": data1[i].type, "color": color(i), "percent": data1[i].percentage };
+            }
+            Session.set("legend", legend);
         }
 
     },
@@ -128,12 +133,24 @@ Template.pie.events({
         if (state){
             state = !state;
             transition(state);
+            Session.set("year", 2009);
+            for (i = 0; i < data0.length; i ++) {
+                legend[i] = {"type": data0[i].type, "color": color(i), "percent": data0[i].percentage };
+            }
+            Session.set("legend", legend);
         }
     }
+});
+
+Meteor.startup(function(){
+    Session.set("year", 2004);
 });
 
 Template.pie.helpers({
     legend: function(){
         return Session.get("legend");
+    },
+    year: function(){
+        return Session.get("year");
     }
 });

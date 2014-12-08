@@ -32,7 +32,7 @@ if (Meteor.isClient) {
       node.append("text")
           .attr("dy", ".3em")
           .style("text-anchor", "middle")
-          .text(function(d) { return d.className.substring(0, d.r / 3) + ": " + Math.round(d.value); });
+          .text(function(d) { return d.className/*.substring(0, d.r / 3)*/ + ": " + Math.round(d.value); });
     });
 
     // Returns a flattened hierarchy containing all leaf nodes under the root.

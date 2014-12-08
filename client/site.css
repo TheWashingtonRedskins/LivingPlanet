@@ -13,3 +13,6 @@ body, html {
   -ms-user-select: none;
   user-select: none;
 }
+.btn-floating {
+  background-color: #009688 !important;
+}
