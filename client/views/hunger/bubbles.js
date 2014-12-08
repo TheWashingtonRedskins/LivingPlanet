@@ -1,6 +1,6 @@
 Template.visualizeHunger.rendered = function()
 {
-var width = 960,
+var width = screen.width,
     height = 500;
 
 var nodes = d3.range(200).map(function() { return {radius: 10}; }),
