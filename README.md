@@ -12,11 +12,10 @@ We used modern web techonologies like Meteor.JS and several visualization librar
 
 ## Screenshots
 
-Here are a couple of screenshots of our site.
+Here is a screenshot of our site. You can chose a topic to learn about.
 
-![Koding](https://koding.com/a/site.landing/images/slideshow/2x/ss-terminal.png "Koding")
+!Screenshot](http://i.imgur.com/YFraweN.gif "Screenshot")
 
 ## APIs used
 
-Mashape Wikipedia API  
 NGINX Proxy Server (in some deployments)
