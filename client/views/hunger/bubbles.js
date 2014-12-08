@@ -139,7 +139,8 @@ $(function () {
 
         plotOptions: {
             column: {
-                depth: 40
+                depth: 40,
+                stacking: 'normal'
             }
         },
 
@@ -154,7 +155,7 @@ $(function () {
         }, {
             name: '>300 Calories undernourished',
             data: [0, 6, 9, 16, 46],
-            stack: 'female'
+            stack: 'male'
         }]
     });
 });
