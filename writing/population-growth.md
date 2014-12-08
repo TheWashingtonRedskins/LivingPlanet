@@ -11,8 +11,6 @@ Until recently, similar birth rates and death rates kept population relatively s
 The average family has always had multiple children, but historically most children did not live to adulthood.
 During the Industrial Revolution, however, this rapidly changed; improvements in science and technology allowed or more food production, proper waste disposal, and the beginnings of modern medicine drastically reduced the death rate. Because the birth rate did not change much, population growth rate skyrocketed (and only continued to increase with new advancements).
 
-## Facts of Population Growth
-
 
 ## Consequences of Overpopulation
 Overpopulation is the result of our population growth and will only become a bigger and more prevalent problem unless we take action now. 
