@@ -26,9 +26,15 @@
 }
 
 #tileContainer {
-    bottom: 5%;
     left: 5%;
     right: 5%;
     position:absolute;
-    top:30%;
+    top:250px;
+}
+
+.card .card-action a {
+    color: #FFF !important;
+}
+.card .card-action a:hover {
+    color: #304FFE !important;
 }
