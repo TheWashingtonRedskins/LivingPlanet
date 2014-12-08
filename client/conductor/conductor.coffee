@@ -58,10 +58,14 @@ Tracker.autorun ->
   Meteor.clearTimeout i1 if i1?
   Meteor.clearTimeout i2 if i2?
   i1 = Meteor.setTimeout ->
-    Router.go target
+    if target?
+      Router.go target
   , 1000
   i2 = Meteor.setTimeout ->
     Session.set "loadingOverlay", false
-  , 3250
+  , 3000
+
+Meteor.startup ->
+  Session.set "pageTarget", null
 
 @ConductorClass = Conductor

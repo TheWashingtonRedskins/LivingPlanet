@@ -6,8 +6,8 @@
   right: 5%;
   background: black;
   box-shadow: 0 0 40px 20px #000;
-  -webkit-transition: top 0.25s ease-in, left 0.25s ease-in, right 0.25s ease-in, bottom 0.25s ease-in, opacity 0.25s ease-in;
-  transition: top 0.25s ease-in, left 0.25s ease-in, right 0.25s ease-in, bottom 0.25s ease-in, opacity 0.25s ease-in;
+  -webkit-transition: top 0.5s ease-in, left 0.5s ease-in, right 0.5s ease-in, bottom 0.5s ease-in, opacity 0.5s ease-in;
+  transition: top 0.5s ease-in, left 0.5s ease-in, right 0.5s ease-in, bottom 0.5s ease-in, opacity 0.5s ease-in;
   opacity: 0;
   z-index: 9999;
 
@@ -23,5 +23,5 @@
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  transition: top 0.25s ease-in, left 0.25s ease-in, right 0.25s ease-in, bottom 0.25s ease-in, opacity 0.25s ease-in;
+  transition: top 0.5s ease-in, left 0.5s ease-in, right 0.5s ease-in, bottom 0.5s ease-in, opacity 0.5s ease-in;
 }
