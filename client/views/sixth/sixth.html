@@ -1,6 +1,5 @@
 <template name="sixth">
-<h1>The Sixth Mass Extinction</h1>
-  <h2>It sounds intimidating doesn't it? Don't worry though, humans aren't in danger, or are they?</h2>
+<h1>The Sixth Mass Extinction</h1> <h2>It sounds intimidating doesn't it? Don't worry though, humans aren't in danger, or are they?</h2>
   <h4>The Sixth Mass Extinction, also referred to as the Holocene Extinction, is the extinction of many of
   	the world's plant and animal species largely due to human activity. Often times these species are
   	accustomed to a certain type of environment and for one reason or anther, the impact of humans has
@@ -22,4 +21,9 @@
 	 <button id="yearOp1" > 2004</button>
 	 <button id="yearOp2" > 2009</button>
   <div id="pie"></div>
+  <div id="legend">
+  {{#each legend}}
+  <div class="swatchCont"><div class="swatch" style="background-color: {{color}};"></div>{{type}}</div>
+  {{/each}}
+  </div>
 </template>

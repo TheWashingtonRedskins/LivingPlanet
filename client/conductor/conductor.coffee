@@ -41,7 +41,27 @@ class Conductor
     @updateViews()
 
   registerRoute: (view)->
-    Router.route view.slug, ->
-      @render view.template
+    Router.route view.slug,
+      layoutTemplate: "layout"
+      template: view.template
+
+  goTo: (url)->
+    Session.set "pageTarget", url
+    Session.set "loadingOverlay", true
+
+i1 = null
+i2 = null
+Tracker.autorun ->
+  target = Session.get "pageTarget"
+  overlay = Session.get "loadingOverlay"
+  return if !overlay
+  Meteor.clearTimeout i1 if i1?
+  Meteor.clearTimeout i2 if i2?
+  i1 = Meteor.setTimeout ->
+    Router.go target
+  , 1000
+  i2 = Meteor.setTimeout ->
+    Session.set "loadingOverlay", false
+  , 3250
 
 @ConductorClass = Conductor

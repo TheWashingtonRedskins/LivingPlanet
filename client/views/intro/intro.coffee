@@ -1,4 +1,4 @@
-container = null
+is_rendering = false
 global = @
 @camera = null
 camera = null
@@ -28,7 +28,6 @@ checkLoading = ->
   return
 init = ->
   console.log "Initing"
-  container = $("#introContainer")[0]
   global.camera = camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 50000)
   camera.position.y = 500
   camera.position.z = 2000
@@ -193,7 +192,6 @@ init = ->
     composer.setSize window.innerWidth / scaleRatio, window.innerHeight / scaleRatio
     composer.addPass renderModel
     composer.addPass effectCopy
-    container.appendChild renderer.domElement
     has_gl = true
     window.addEventListener "resize", onWindowResize, false
     if scaleRatio > 1
@@ -207,6 +205,7 @@ init = ->
   catch e
     
     # need webgl
+    console.log e
     alert "Please view this website in a browser that supports webgl."
     return
   return
@@ -233,7 +232,8 @@ onWindowResize = (event) ->
   composer.reset()
   composer.setSize w / scaleRatio, h / scaleRatio
 animate = ->
-  requestAnimationFrame animate
+  if is_rendering
+    requestAnimationFrame animate
   render()
   return
 render = ->
@@ -248,7 +248,14 @@ render = ->
     renderer.render scene, camera, depthTarget, true
     composer.render 0.01
   return
-Template.intro.rendered = ->
-  startTime = Date.now()
+Meteor.startup ->
   checkLoading()
   init()
+Template.intro.rendered = ->
+  startTime = Date.now()
+  container = $("#introContainer")[0]
+  container.appendChild renderer.domElement
+  is_rendering = true
+  animate()
+Template.intro.destroyed = ->
+  is_rendering = false

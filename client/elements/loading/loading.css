@@ -1,0 +1,27 @@
+#loading {
+  position: fixed;
+  top: 5%;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
+  background: black;
+  box-shadow: 0 0 40px 20px #000;
+  -webkit-transition: top 0.25s ease-in, left 0.25s ease-in, right 0.25s ease-in, bottom 0.25s ease-in, opacity 0.25s ease-in;
+  transition: top 0.25s ease-in, left 0.25s ease-in, right 0.25s ease-in, bottom 0.25s ease-in, opacity 0.25s ease-in;
+  opacity: 0;
+  z-index: 9999;
+
+  background-image: url(/images/loading.gif);
+  background-position: center center;
+  background-size: 600px 600px;
+  background-repeat: no-repeat;
+}
+
+#loading.loading {
+  opacity: 1 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  transition: top 0.25s ease-in, left 0.25s ease-in, right 0.25s ease-in, bottom 0.25s ease-in, opacity 0.25s ease-in;
+}
