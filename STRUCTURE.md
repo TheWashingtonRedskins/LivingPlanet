@@ -36,17 +36,12 @@ Conductor.registerView
   subtitle: "A thing demonstrating My Thing"
   # Supply an icon image
   image: "/images/stuff.png"
-  # OR supply a icon template
-  iconTemplate: "myAnimatedIcon"
   # Optional subscriptions callback
   subscriptions: ->
     Meteor.subscribe("myData")
  # Optional subscriptions callback to WAIT ON before going to the page.
  waitOn: ->
    Meteor.subscribe("myData")
- # Optional rendered function
- rendered: ->
-   console.log "Rendered!"
 ```
 
 This view registration will let Conductor know about your view. This will create a tile on the home screen of the site and register a URL for your app. 
@@ -79,3 +74,5 @@ Template.myView.events
 ```
 
 Conductor will handle animating in and out your page, as well as showing loading screens while the `waitOn` subscriptions take a while to get around to completing.
+
+Conductor written by Christian Stewart (paralin).

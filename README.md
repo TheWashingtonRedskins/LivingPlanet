@@ -1,6 +1,22 @@
-LivingPlanet
-============
+# The Washington Redskins Koding Global Virtual Hackathon Submission
 
-A web experience showing the dynamic world that we live in created for the Koding hackathon.
+This is our submission to the Koding Global Virtual Hackathon.
 
-After several rerevisions, we settled on discussing population growth and overpopulation.
+## Description
+
+[![Koding Hackathon](http://i.imgur.com/GVgfurb.png "Koding Hackathon")](https://koding.com/Hackathon)
+
+We wanted to create an engaging web experience where users can learn about the changing environment of our planet, and how humans affect it. We also wanted to cover the important issue of overpopulation and how this affects our society.
+
+We used modern web techonologies like Meteor.JS and several visualization libraries to create an immersive browser-based web app.
+
+## Screenshots
+
+Here are a couple of screenshots of our site.
+
+![Koding](https://koding.com/a/site.landing/images/slideshow/2x/ss-terminal.png "Koding")
+
+## APIs used
+
+Mashape Wikipedia API
+NGINX Proxy Server (in some deployments)

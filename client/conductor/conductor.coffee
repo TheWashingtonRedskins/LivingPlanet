@@ -55,10 +55,10 @@ Tracker.autorun ->
   i1 = Meteor.setTimeout ->
     if target?
       Router.go target
-  , 1000
+  , if target is "" then 500 else 1000
   i2 = Meteor.setTimeout ->
     Session.set "loadingOverlay", false
-  , 3000
+  , if target is "" then 600 else 3000
 
 Meteor.startup ->
   Session.set "pageTarget", null
