@@ -5,7 +5,7 @@
 }
 #legend {
 	border: 1px solid black;
-	width: 120px;
+	width: 300px;
 	display: inline-block;
 	float: right;
 }
@@ -13,10 +13,13 @@
 .swatch {
 	height: 20px;
 	width: 20px;
+    float: left;
+    margin-right: 15px;
 }
 
 .swatchCont {
 	padding-bottom: 5px;
 	display: inline-block;
 	float: left;
+    width: 100%;
 }

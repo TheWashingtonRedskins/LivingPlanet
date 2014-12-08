@@ -14,10 +14,10 @@ There is a cascading effect that we have already started to feel and overpopulat
 </template>
 
 <template name="pie">
-	 <button id="yearOp1" > 2004</button>
-	 <button id="yearOp2" > 2009</button>
+  <a id="yearOp1" class="waves-effect waves-light btn">Show 2004</a>
+  <a id="yearOp2" class="waves-effect waves-light btn">Show 2009</a>
   <div id="pie"></div>
-  <div id="legend">
+  <div id="legend" style="position: relative; bottom: 450px">
   {{#each legend}}
   <div class="swatchCont"><div class="swatch" style="background-color: {{color}};"></div>{{type}}</div>
   {{/each}}
