@@ -14,7 +14,7 @@ if (Meteor.isClient) {
         .attr("height", diameter)
         .attr("class", "bubble");
 
-    d3.json("/emissions.json", function(error, root) {
+    d3.json("/data/emissions.json", function(error, root) {
       var node = svg.selectAll(".node")
           .data(bubble.nodes(classes(root))
           .filter(function(d) { return !d.children; }))
