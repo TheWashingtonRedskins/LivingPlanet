@@ -7,6 +7,11 @@
   background-position: center center;
 }
 
+#hunger svg
+{
+	width: 500;
+}
+
 #container {
 	height: 400px; 
 	min-width: 310px; 
