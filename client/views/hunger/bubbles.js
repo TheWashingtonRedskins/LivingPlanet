@@ -116,7 +116,7 @@ $(function () {
         },
 
         title: {
-            text: 'How undernourished hungry people are in each region'
+            text: 'How Undernourished Hungry People are by Region'
         },
 
         xAxis: {
