@@ -1,0 +1,18 @@
+#footerLinks {
+    width: 100%;
+    background-color: black;
+    z-index: 9;
+    height: 25px;
+    position: absolute; 
+    display: none;
+}
+
+#topBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    background-color: black;
+    z-index: 9;
+    width: 100%;
+}
