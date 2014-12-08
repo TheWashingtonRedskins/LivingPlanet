@@ -12,9 +12,9 @@ We used modern web techonologies like Meteor.JS and several visualization librar
 
 ## Screenshots
 
-Here is a screenshot of our site. You can chose a topic to learn about.
+Here is a screenshot of our site. You can chose a topic to learn about. Click to jump to the site.
 
-![Screenshot](http://i.imgur.com/YFraweN.gif "Screenshot")
+<a href="http://kidovate.koding.io">![Screenshot](http://i.imgur.com/YFraweN.gif "Screenshot")</a>
 
 ## APIs used
 
