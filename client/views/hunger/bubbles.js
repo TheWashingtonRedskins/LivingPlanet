@@ -116,7 +116,11 @@ $(function () {
         },
 
         title: {
-            text: 'How Undernourished Hungry People are by Region'
+            text: 'Undernourishment of Starving People by Region'
+        },
+
+        subtitle: {
+          text: 'Source: http://www.fao.org/docrep/X8200E/x8200e03.htm'
         },
 
         xAxis: {
