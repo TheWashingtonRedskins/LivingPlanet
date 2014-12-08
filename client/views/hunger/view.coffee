@@ -4,5 +4,5 @@ Meteor.startup ->
     slug: "hunger" # Empty slug for /
     template: "hunger"
     name: "World Hunger"
-    subtitle: "Nearly one billion people starve daily"
+    subtitle: "Nearly one billion people can't get the nutrition they need"
     image: ""
