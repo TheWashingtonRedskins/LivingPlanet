@@ -1,13 +1,19 @@
 <template name="disease">
-  {{> pandemics}}
-  {{> example}}
+{{#markdown}}
+# Disease
+A larger population means more potential victims of infections and more carriers of disease.
+Though advances in medicine have largely protected us from disease, highly contaigous diseases (e.g. HIV, H1N1, and Ebola) are more likely than ever to cause pandemics because of the ease of spreading.
+{{/markdown}}
+
+{{> pandemics}}
+
+{{#markdown}}
+Despite the improvements in medicine and sanitation, it's clear that the number of pandemics per century and the frequency of pandemics is increasing with time and a growing global population.
+Of course, for this trend to continue, we must assume that pandemics will continue to plague the world in the this century. It's worth noting that so far in the 21st century, we've already had two pandemics, even though fewer than 15 years have passed. 
+It's important to note that deaths have significantly decreased despite the increased number of pandemics thanks to medicinal advancements like vaccines and antibiotics. 
+{{/markdown}}
 </template>
 
 <template name="pandemics">
-  <div id="container" style="min-width: 310px; height 400px; margin: 0 auto"></div>
+<div id="container" style="min-width: 310px; height 400px; margin: 0 auto"></div>
 </template> 
-
-<template name="example">
-  <div id="container2" style="min-width: 310px; height 400px; margin: 0 auto"></div>
-</template>
-
