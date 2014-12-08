@@ -263,3 +263,6 @@ Template.intro.destroyed = ->
 Template.intro.helpers
   view: ->
     Views.find({showTile: true})
+Template.intro.events
+  "click .learnMore": ->
+    Conductor.goTo @slug
