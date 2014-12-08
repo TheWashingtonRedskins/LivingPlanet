@@ -18,5 +18,5 @@ Here are a couple of screenshots of our site.
 
 ## APIs used
 
-Mashape Wikipedia API
+Mashape Wikipedia API  
 NGINX Proxy Server (in some deployments)
