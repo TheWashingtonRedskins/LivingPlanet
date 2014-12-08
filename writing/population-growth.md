@@ -46,4 +46,7 @@ There is a cascading effect that we have already started to feel and overpopulat
 # Sources
 ["The Population Explosion: Causes and Consequences"](http://www.yale.edu/ynhti/curriculum/units/1998/7/98.07.02.x.html) by Carolyn Kinder in the [*Yale-New Haven Teachers Institute*](http://www.yale.edu/ynhti/curriculum/units/1998/7/) 1998 Volume VII  
 ["World Population"](http://en.wikipedia.org/wiki/World_population) and ["Population Growth"](http://en.wikipedia.org/wiki/Population_growth) on Wikipedia  
-["Climate Change: Vital Signs of the Plannet: Carbon Dioxide"](http://climate.nasa.gov/vital-signs/carbon-dioxide/) from NASA 
+["Climate Change: Vital Signs of the Plannet: Carbon Dioxide"](http://climate.nasa.gov/vital-signs/carbon-dioxide/) from NASA
+["IUCN Red List Species Data for 2009"](https://portals.iucn.org/library/efiles/documents/rl-2009-001.pdf) 
+["IUCN Red List Species Data for 2004"](https://portals.iucn.org/library/efiles/html/Red%20List%202004/completed/Section2.html) 
+["Animating Pie Chart"](http://bl.ocks.org/mbostock/4063269)
