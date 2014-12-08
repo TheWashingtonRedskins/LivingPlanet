@@ -206,7 +206,7 @@ init = ->
     
     # need webgl
     console.log e
-    alert "Please view this website in a browser that supports webgl."
+    console.log "WEBGL NOT DETECTED! Leaves falling won't work."
     return
   return
 generateTexture = ->
