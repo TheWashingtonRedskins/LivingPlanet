@@ -1,5 +1,8 @@
 <template name="layout">
 {{>loadingOverlay}}
+{{#if showBack}}
+<a class="btn-floating" id="backBtn"><i class="mdi-navigation-arrow-back"></i></a>
+{{/if}}
 <div class="container">
     <div class="row">
         <div class="col s12 m12 l12">
