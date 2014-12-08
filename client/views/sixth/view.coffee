@@ -4,3 +4,4 @@ Meteor.startup ->
     slug: "sixth" # Empty slug for /
     template: "sixth"
     name: "Sixth Extinction"
+    image: ""

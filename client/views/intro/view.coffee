@@ -5,3 +5,4 @@ Meteor.startup ->
     template: "intro"
     name: "Introduction Animation"
     showTile: false
+    image: ""

@@ -4,3 +4,4 @@ Meteor.startup ->
     slug: "emissions" # Empty slug for /
     template: "emissions"
     name: "CO2 emissions"
+    image: ""

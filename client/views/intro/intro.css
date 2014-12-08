@@ -1,9 +1,15 @@
+#introContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+}
+
 #titleContainer {
     text-align: center;
     width: 100%;
-    position: absolute;
-    top:0;
-    left:0;
     padding-top: 5%;
 }
 
@@ -17,4 +23,13 @@
     margin-bottom:0;
     font-weight: 400;
     margin-top:0;
+}
+
+#tileContainer {
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+    position:absolute;
+    top:30%;
+    background-color:#9ACD32;
 }

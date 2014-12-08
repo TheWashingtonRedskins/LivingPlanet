@@ -259,3 +259,7 @@ Template.intro.rendered = ->
   animate()
 Template.intro.destroyed = ->
   is_rendering = false
+
+Template.intro.helpers
+  view: ->
+    Views.find({showTile: true})
