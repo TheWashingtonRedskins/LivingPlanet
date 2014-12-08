@@ -50,7 +50,10 @@ Template.visualize2.rendered = function()
         ? [100, .5 * (b[0][1] + b[1][1])] // Russia
         : [.5 * (b[0][0] + b[1][0]), .5 * (b[0][1] + b[1][1])];
 
-
+        if(kappa == -3.6)
+        {
+          centroid = [-.5 * (b[0][0] + b[1][0]), -.5 * (b[0][1] + b[1][1])]
+        }
 
 
 
@@ -72,10 +75,20 @@ Template.visualize2.rendered = function()
               s = s * tooSmall;
             }
 
+            if(kappa == 22.5)
+            {
+              s = s * 1.5;
+            }
+
+            if(kappa == 30.1)
+            {
+              s = s * .75;
+            }
+
             svg 
             .attr("class", "population-img")
-            .attr("width", dx * s + 150)
-            .attr("height", dy * s + 150)
+            .attr("width", dx * s + 115)
+            .attr("height", dy * s + 75)
             .append("g")
             .attr("transform", "scale(" + s + ")translate(" + [10 - bounds[0][0], 10 - bounds[0][1]] + ")")
             .append("path")
