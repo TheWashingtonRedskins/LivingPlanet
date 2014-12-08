@@ -9,7 +9,7 @@ if (Meteor.isClient) {
         .size([diameter, diameter])
         .padding(1.5);
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#bubbles").append("svg")
         .attr("width", diameter)
         .attr("height", diameter)
         .attr("class", "bubble");
