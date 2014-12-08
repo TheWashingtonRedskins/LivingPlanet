@@ -3,3 +3,13 @@
   top: 60px;
   left: 20px;
 }
+
+.container {
+  padding-top: 20px;
+  margin-bottom: 25px;
+}
+
+.container img {
+  max-width: 90%;
+  padding: 20px;
+}
