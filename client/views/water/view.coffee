@@ -5,4 +5,4 @@ Meteor.startup ->
     template: "water"
     name: "Water Shortage"
     image: "http://materializecss.com/images/sample-1.png"
-    subtitle: "Water is super short yo!"
+    subtitle: "Millions are left without water despite current technology"

@@ -5,3 +5,4 @@ Meteor.startup ->
     template: "populationGrowth"
     name: "Population Growth"
     image: ""
+    subtitle: "How quickly we are expanding"

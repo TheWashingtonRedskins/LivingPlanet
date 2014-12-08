@@ -88,7 +88,7 @@ Template.visualize2.rendered = function()
             svg 
             .attr("class", "population-img")
             .attr("width", dx * s + 115)
-            .attr("height", dy * s + 75)
+            .attr("height", dy * s + 50)
             .append("g")
             .attr("transform", "scale(" + s + ")translate(" + [10 - bounds[0][0], 10 - bounds[0][1]] + ")")
             .append("path")

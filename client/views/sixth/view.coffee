@@ -5,3 +5,4 @@ Meteor.startup ->
     template: "sixth"
     name: "Sixth Extinction"
     image: ""
+    subtitle: "The biggest extinction since the dinosaurs died"
