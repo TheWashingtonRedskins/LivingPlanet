@@ -5,4 +5,4 @@ Meteor.startup ->
     template: "emissions"
     name: "CO2 emissions"
     image: ""
-    subtitle: "Our constant emission of CO2 destroys the ozone"
+    subtitle: "Our constant emission of CO2 drastically alters our environmnet"
