@@ -14,7 +14,7 @@ We used modern web techonologies like Meteor.JS and several visualization librar
 
 Here is a screenshot of our site. You can chose a topic to learn about. Click to jump to the site.
 
-<a href="http://kidovate.koding.io">![Screenshot](http://i.imgur.com/YFraweN.gif "Screenshot")</a>
+<a href="http://livingplanet.paral.in/">![Screenshot](http://i.imgur.com/YFraweN.gif "Screenshot")</a>
 
 ## APIs used
 
